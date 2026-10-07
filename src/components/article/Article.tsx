@@ -3,11 +3,28 @@ import { clsx } from 'clsx';
 import plane from 'src/images/plane.png';
 import { Text } from 'src/ui/text';
 
+import type { defaultArticleState } from 'src/constants/articleProps';
+
 import styles from './Article.module.scss';
 
-export const Article = (): React.JSX.Element => {
+type ArticleProps = {
+  settings: typeof defaultArticleState;
+};
+
+export const Article = ({ settings }: ArticleProps): React.JSX.Element => {
   return (
-    <article className={clsx(styles.article)}>
+    <article
+      className={clsx(styles.article)}
+      style={
+        {
+          '--font-family': settings.fontFamilyOption.value,
+          '--font-size': settings.fontSizeOption.value,
+          '--font-color': settings.fontColor.value,
+          '--bg-color': settings.backgroundColor.value,
+          '--container-width': settings.contentWidth.value,
+        } as React.CSSProperties
+      }
+    >
       <Text as="h1" size={45} weight={800} uppercase dynamicLite>
         Портрет Западной Швейцарии
       </Text>

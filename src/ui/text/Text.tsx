@@ -42,13 +42,13 @@ export const Text = ({
 }: TextProps): React.JSX.Element => {
   const className = clsx(
     styles.text,
-    styles[`size${size}`],
+    { [styles[`size${size}`]]: !dynamic },
     { [styles.dynamic]: dynamic },
-    styles[`weight${weight}`],
+    { [styles[`weight${weight}`]]: !dynamic },
     styles[`${fontStyle}`],
     { [styles.uppercase]: uppercase },
     styles[`${align}`],
-    styles[`${family}`],
+    { [styles[`${family}`]]: !dynamic },
     { [styles.dynamicLite]: dynamicLite }
   );
   return <Tag className={className}>{children}</Tag>;
