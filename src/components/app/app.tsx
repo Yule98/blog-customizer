@@ -6,6 +6,8 @@ import { ArticleParamsForm } from '@components/article-params-form';
 
 import { Article } from '../article/Article';
 
+import type { CSSProperties } from 'react';
+
 import styles from './app.module.scss';
 
 export const App = (): React.JSX.Element => {
@@ -16,9 +18,20 @@ export const App = (): React.JSX.Element => {
   };
 
   return (
-    <main className={clsx(styles.main)}>
+    <main
+      className={clsx(styles.main)}
+      style={
+        {
+          '--font-family': appliedSettings.fontFamilyOption.value,
+          '--font-size': appliedSettings.fontSizeOption.value,
+          '--font-color': appliedSettings.fontColor.value,
+          '--container-width': appliedSettings.contentWidth.value,
+          '--bg-color': appliedSettings.backgroundColor.value,
+        } as CSSProperties
+      }
+    >
       <ArticleParamsForm onApply={handleApply} />
-      <Article settings={appliedSettings} />
+      <Article />
     </main>
   );
 };

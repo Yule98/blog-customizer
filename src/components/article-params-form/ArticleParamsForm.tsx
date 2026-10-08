@@ -7,16 +7,19 @@ import {
   fontColors,
   fontFamilyOptions,
   fontSizeOptions,
+  type ArticleStateType,
 } from 'src/constants/articleProps';
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 import { RadioGroup } from 'src/ui/radio-group';
 import { Select } from 'src/ui/select';
+import { Separator } from 'src/ui/separator';
+import { Text } from 'src/ui/text';
 
 import styles from './ArticleParamsForm.module.scss';
 
 type ArticleParamsFormProps = {
-  onApply: (settings: typeof defaultArticleState) => void;
+  onApply: (settings: ArticleStateType) => void;
 };
 
 export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Element => {
@@ -70,8 +73,11 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Elem
         })}
       >
         <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
+          <Text as="h2" size={31} weight={800} uppercase>
+            Задайте параметры
+          </Text>
           <Select
-            title="ШРИФТ"
+            title="Шрифт"
             selected={formState.fontFamilyOption}
             options={fontFamilyOptions}
             onChange={(fontFamilyOption) =>
@@ -84,7 +90,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Elem
 
           <RadioGroup
             name="font-size"
-            title="РАЗМЕР"
+            title="Размер шрифта"
             selected={formState.fontSizeOption}
             options={fontSizeOptions}
             onChange={(fontSizeOption) =>
@@ -96,7 +102,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Elem
           />
 
           <Select
-            title="ЦВЕТ ТЕКСТА"
+            title="Цвет шрифта"
             selected={formState.fontColor}
             options={fontColors}
             onChange={(fontColor) =>
@@ -107,8 +113,10 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Elem
             }
           />
 
+          <Separator />
+
           <Select
-            title="ЦВЕТ ФОНА"
+            title="Цвет фона"
             selected={formState.backgroundColor}
             options={backgroundColors}
             onChange={(backgroundColor) =>
@@ -120,7 +128,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Elem
           />
 
           <Select
-            title="ШИРИНА КОНТЕНТА"
+            title="Ширина контента"
             selected={formState.contentWidth}
             options={contentWidthArr}
             onChange={(contentWidth) =>
