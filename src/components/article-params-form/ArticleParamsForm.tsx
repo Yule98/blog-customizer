@@ -26,6 +26,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Elem
   const { onApply } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [formState, setFormState] = useState(defaultArticleState);
+  const [radioGroupKey, setRadioGroupKey] = useState(0);
 
   const handleToggle = (): void => {
     setIsOpen((previousValue) => !previousValue);
@@ -57,8 +58,8 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Elem
   const handleReset = (): void => {
     setFormState(defaultArticleState);
     onApply(defaultArticleState);
+    setRadioGroupKey((previousKey) => previousKey + 1);
   };
-
   return (
     <>
       <div>
@@ -89,6 +90,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps): React.JSX.Elem
           />
 
           <RadioGroup
+            key={radioGroupKey}
             name="font-size"
             title="Размер шрифта"
             selected={formState.fontSizeOption}
